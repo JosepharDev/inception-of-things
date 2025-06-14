@@ -1,0 +1,12 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "debian/bookworm64"
+    config.vm.define "yoyahyaS" do |server|
+        server.vm.hostname = "yoyahyaS"
+        server.vm.network "private_network", ip: "192.168.56.110"
+        server.vm.provider "virtualbox" do |v|
+            v.memory = 1024
+            v.cpus = 1
+        end
+    server.vm.provision "shell", path: "server_script.sh"
+    end
+end
