@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes-service
+spec:
+  selector:
+    app: hello-kubernetes
+  ports:
+    - port: 80           # service port
+      targetPort: 8080   # container port
+  type: NodePort
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        app: hello-kubernetes
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: paulbouwer/hello-kubernetes:1.10
+        ports:
+          - containerPort: 8080
+            name: hello-kuber
+        env:
+          - name: MESSAGE
+            value: "Hello from app3."
