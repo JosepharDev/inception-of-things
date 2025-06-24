@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo docker rm -f $(sudo docker ps -aq)
+sudo docker system prune -a
+sudo docker volume rm $(sudo docker volume ls)
