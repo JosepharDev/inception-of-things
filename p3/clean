@@ -1,5 +1,32 @@
 #!/bin/bash
 
-sudo docker rm -f $(sudo docker ps -aq)
-sudo docker system prune -a
-sudo docker volume rm $(sudo docker volume ls)
+# sudo docker rm -f $(sudo docker ps -aq)
+# sudo docker system prune -a
+# sudo docker volume rm $(sudo docker volume ls)
+
+
+#!/bin/bash
+
+echo "🧹 Cleaning up Argo CD and K3d environment..."
+
+# 1. Delete port-forward processes
+echo "🔌 Stopping port-forwarding..."
+sudo pkill -f "kubectl port-forward svc/argocd-server" && echo "✅ Port-forwarding stopped." || echo "ℹ️ No port-forwarding process found."
+
+# 2. Delete Argo CD resources
+echo "🗑️ Deleting Argo CD installation..."
+sudo kubectl delete -n argocd --ignore-not-found=true -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# 3. Delete namespaces
+echo "📦 Deleting namespaces 'argocd' and 'dev'..."
+sudo kubectl delete namespace argocd --ignore-not-found=true
+sudo kubectl delete namespace dev --ignore-not-found=true
+
+# 4. Delete the K3d cluster
+echo "⚠️ Deleting K3d cluster 'p3-cluster'..."
+sudo k3d cluster delete p3-cluster
+
+# 5. Verify everything is gone
+echo "✅ Verifying cleanup..."
+sudo kubectl get namespaces
+sudo k3d cluster list

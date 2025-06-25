@@ -1,0 +1,15 @@
+global:
+  edition: ce
+  hosts:
+    domain: "localhost"
+    externalIP: "127.0.0.1"
+
+  ingress:
+    configureCertmanager: false
+    tls:
+      enabled: false
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+gitlab-runner:
+  install: true
