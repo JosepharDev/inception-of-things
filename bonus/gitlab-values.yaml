@@ -2,7 +2,7 @@ global:
   edition: ce
   hosts:
     domain: "localhost"
-    externalIP: "127.0.0.1"
+    externalIP: "10.0.2.15"
 
   ingress:
     configureCertmanager: false
@@ -13,3 +13,34 @@ global:
 
 gitlab-runner:
   install: true
+
+gitlab:
+  webservice:
+    minReplicas: 1
+    maxReplicas: 1
+  sidekiq:
+    minReplicas: 1
+    maxReplicas: 1
+  gitlab-runner:
+    install: false
+  kas:
+    enabled: false
+  minio:
+    enabled: false
+
+
+# global:
+#   edition: ce
+#   hosts:
+#     domain: "localhost"
+#     externalIP: "127.0.0.1"
+
+#   ingress:
+#     configureCertmanager: false
+#     tls:
+#       enabled: false
+#     annotations:
+#       nginx.ingress.kubernetes.io/ssl-redirect: "false"
+
+# gitlab-runner:
+#   install: true

@@ -14,6 +14,8 @@
 #k3d cluster create iot-cluster --agents 1 \
 #  --port "8888:8888@loadbalancer" \  # App
 #  --port "8080:443@loadbalancer"     # Argo CD
+
+
 sudo k3d cluster create p3-cluster
 echo "✅ Checking K3d cluster status..."
 sudo k3d cluster list
