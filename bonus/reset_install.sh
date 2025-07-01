@@ -2,18 +2,18 @@
 set -e
 
 NAMESPACE="gitlab"
-CLUSTER="p3-cluster"
+CLUSTER="gitlab-cluster"
 DOMAIN="gitlab.local"
 
 echo "🧹 Cleaning up previous setup..."
 
 # Delete k3d cluster if exists
-# if k3d cluster list | grep -q "$CLUSTER"; then
-#   echo "Deleting cluster $CLUSTER..."
-#   k3d cluster delete "$CLUSTER"
-# else
-#   echo "Cluster $CLUSTER not found, skipping delete."
-# fi
+if k3d cluster list | grep -q "$CLUSTER"; then
+  echo "Deleting cluster $CLUSTER..."
+  k3d cluster delete "$CLUSTER"
+else
+  echo "Cluster $CLUSTER not found, skipping delete."
+fi
 
 # # Remove /etc/hosts entry
 # echo "Removing $DOMAIN from /etc/hosts..."
