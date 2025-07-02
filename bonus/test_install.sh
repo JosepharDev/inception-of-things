@@ -8,8 +8,8 @@ CLUSTER="gitlab-cluster"
 # install git
 sudo apt install git
 
-echo "🚀 Creating k3d cluster $CLUSTER with ports exposed..."
-k3d cluster create "$CLUSTER"
+# echo "🚀 Creating k3d cluster $CLUSTER with ports exposed..."
+# k3d cluster create "$CLUSTER"
 
 # after install k3d cluster create gitlab namespace
 sudo kubectl create namespace gitlab
@@ -36,7 +36,7 @@ sudo helm upgrade --install gitlab gitlab/gitlab \
   -n gitlab \
   -f https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
   --set global.hosts.domain=k3d.gitlab.com \
-  --set global.hosts.externalIP=0.0.0.0 \
+  --set global.hosts.externalIP=10.0.2.15 \
   --set global.hosts.https=false \
   --timeout 600s
 
@@ -50,3 +50,12 @@ echo "${RESET}"
 
 # argocd localhost:80 or http://gitlab.k3d.gitlab.com
 sudo kubectl port-forward svc/gitlab-webservice-default -n gitlab 80:8181 2>&1 >/dev/null &
+
+
+
+
+
+#sudo helm status -n gitlab
+#sudo helm status gitlab -n gitlab
+
+# sudo kubectl exec -it -n gitlab gitlab-toolbox-6594f5cdc5-qbd9q -- bash

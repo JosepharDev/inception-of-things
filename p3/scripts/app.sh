@@ -12,6 +12,6 @@ while ! sudo kubectl get svc svc-wil -n dev >/dev/null 2>&1; do
   sleep 2
 done
 
-sleep 10
+sleep 20
 echo -e "${GREEN}PORT-FORWARD : sudo kubectl port-forward svc/svc-wil -n dev 8888:8080${RESET}"
 sudo kubectl port-forward svc/svc-wil -n dev 8888:8080 > /dev/null 2>&1 &
