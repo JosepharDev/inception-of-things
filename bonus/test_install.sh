@@ -4,15 +4,20 @@ GREEN="\033[32m"
 RED="\033[31m"
 RESET="\033[0m"
 
-CLUSTER="gitlab-cluster"
+CLUSTER="bonus-cluster"
 # install git
 sudo apt install git
 
-# echo "🚀 Creating k3d cluster $CLUSTER with ports exposed..."
-# k3d cluster create "$CLUSTER"
+echo "🚀 Creating k3d cluster $CLUSTER with ports exposed..."
+sudo k3d cluster create "$CLUSTER"
 
 # after install k3d cluster create gitlab namespace
-sudo kubectl create namespace gitlab
+sudo kubectl create namespace gitlab && \
+sudo kubectl create namespace argocd && \
+sudo kubectl create namespace dev
+
+echo "install argo cd"
+sudo kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 # install helm - https://helm.sh/
 sudo snap install helm --classic
@@ -36,7 +41,7 @@ sudo helm upgrade --install gitlab gitlab/gitlab \
   -n gitlab \
   -f https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
   --set global.hosts.domain=k3d.gitlab.com \
-  --set global.hosts.externalIP=10.0.2.15 \
+  --set global.hosts.externalIP=0.0.0.0 \
   --set global.hosts.https=false \
   --timeout 600s
 
@@ -48,14 +53,22 @@ echo -n "${GREEN}GITLAB PASSWORD : "
   sudo kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -o jsonpath="{.data.password}" | base64 --decode
 echo "${RESET}"
 
+echo "⏳ Waiting for Argo CD pods to be ready (timeout: 10 minutes)..."
+sudo kubectl wait --for=condition=ready --timeout=600s pod --all -n argocd
+
+
+echo -n "${GREEN}ARGOCD PASSWORD : "
+  sudo kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
+echo "${RESET}"
+
 # argocd localhost:80 or http://gitlab.k3d.gitlab.com
 sudo kubectl port-forward svc/gitlab-webservice-default -n gitlab 80:8181 2>&1 >/dev/null &
 
 
+sudo kubectl port-forward svc/argocd-server -n argocd 8085:443 > /dev/null 2>&1 &
 
 
 
-#sudo helm status -n gitlab
 #sudo helm status gitlab -n gitlab
 
 # sudo kubectl exec -it -n gitlab gitlab-toolbox-6594f5cdc5-qbd9q -- bash
