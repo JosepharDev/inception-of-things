@@ -49,11 +49,13 @@ sudo helm upgrade --install gitlab gitlab/gitlab \
   --set global.hosts.domain=k3d.gitlab.com \
   --set global.hosts.externalIP=0.0.0.0 \
   --set global.hosts.https=false \
+  --set certmanager-issuer.email=josephardev@gmail.com \
   --timeout 600s
 
 echo -e "${YELLOW}⏳ Waiting for GitLab pods to be ready (timeout: 20 minutes)...${RESET}"
 sudo kubectl wait --for=condition=ready --timeout=1200s pod -l app=webservice -n gitlab
 
+sleep 20
 echo -e "${GREEN}🔐 GitLab Root Password:${RESET}"
 echo -n "${GREEN}GITLAB PASSWORD: "
 sudo kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -o jsonpath="{.data.password}" | base64 --decode
@@ -62,11 +64,13 @@ echo "${RESET}"
 echo -e "${YELLOW}⏳ Waiting for Argo CD pods to be ready (timeout: 10 minutes)...${RESET}"
 sudo kubectl wait --for=condition=ready --timeout=600s pod --all -n argocd
 
+sleep 20
 echo -e "${GREEN}🔐 Argo CD Admin Password:${RESET}"
 echo -n "${GREEN}ARGOCD PASSWORD: "
 sudo kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
 echo "${RESET}"
 
+sleep 10
 echo -e "${YELLOW}🔁 Port-forwarding GitLab (80) and Argo CD (8085)...${RESET}"
 sudo kubectl port-forward svc/gitlab-webservice-default -n gitlab 80:8181 >/dev/null 2>&1 &
 sudo kubectl port-forward svc/argocd-server -n argocd 8085:443 >/dev/null 2>&1 &
