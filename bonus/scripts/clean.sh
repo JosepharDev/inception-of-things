@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 CLUSTER="bonus-cluster"
 DEV_NAMESPACE="dev"
 GLB_NAMESPACE="gitlab"
@@ -35,5 +33,5 @@ if grep -q "$HOST_ENTRY" "$HOSTS_FILE"; then
 else
   echo "⚠️ Host entry not found in $HOSTS_FILE."
 fi
-
+rm ../get_helm.sh
 echo "✅ Cleanup complete."
