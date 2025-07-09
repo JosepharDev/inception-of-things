@@ -46,10 +46,10 @@ sudo helm repo update
 echo -e "${YELLOW}🐙 Installing GitLab in namespace $GLB_NAMESPACE... (this may take a while)${RESET}"
 sudo helm upgrade --install gitlab gitlab/gitlab \
   -n gitlab \
+  -f https://gitlab.com/gitlab-org/charts/gitlab/raw/master/examples/values-minikube-minimum.yaml \
   --set global.hosts.domain=k3d.gitlab.com \
   --set global.hosts.externalIP=0.0.0.0 \
   --set global.hosts.https=false \
-  --set certmanager-issuer.email=josephardev@gmail.com \
   --timeout 600s
 
 echo -e "${YELLOW}⏳ Waiting for GitLab pods to be ready (timeout: 20 minutes)...${RESET}"
@@ -79,7 +79,7 @@ echo -e "${GREEN}✅ Setup complete!${RESET}"
 echo -e "${GREEN}➡ Access GitLab at: http://localhost${RESET}"
 echo -e "${GREEN}➡ Access Argo CD at: https://localhost:8085${RESET}"
 
-exec scripts/gitlab_set.sh
+# exec scripts/gitlab_set.sh
 
 #sudo helm status gitlab -n gitlab
 

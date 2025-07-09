@@ -41,7 +41,7 @@ sudo git push
 cd ..
 
 echo -e "${YELLOW}🚀 Applying deployment to Kubernetes in namespace 'dev'...${RESET}"
-sudo kubectl apply -n dev -f confs/deploy.yml
+sudo kubectl apply -n dev -f ../confs/deploy.yml
 sleep 10
 echo -e "${GREEN}✅ All done!${RESET}"
 echo -e "${YELLOW}   sudo kubectl port-forward svc/svc-wil -n dev 8889:8080${RESET}"
