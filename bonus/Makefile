@@ -1,6 +1,5 @@
 all:
-	# ./install_gitlab.sh
-	./test_install
+	./scripts/install.sh
 
 clean:
-	reset_install.sh
+	./scripts/clean.sh
