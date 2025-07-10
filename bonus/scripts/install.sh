@@ -80,7 +80,5 @@ echo -e "${GREEN}➡ Access GitLab at: http://localhost${RESET}"
 echo -e "${GREEN}➡ Access Argo CD at: https://localhost:8085${RESET}"
 
 
-#sudo helm status gitlab -n gitlab
-
 
 
