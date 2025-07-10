@@ -34,4 +34,5 @@ else
   echo "⚠️ Host entry not found in $HOSTS_FILE."
 fi
 rm ../get_helm.sh
+sudo docker system prune -af
 echo "✅ Cleanup complete."

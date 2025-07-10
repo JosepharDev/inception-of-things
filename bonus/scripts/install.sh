@@ -79,10 +79,8 @@ echo -e "${GREEN}✅ Setup complete!${RESET}"
 echo -e "${GREEN}➡ Access GitLab at: http://localhost${RESET}"
 echo -e "${GREEN}➡ Access Argo CD at: https://localhost:8085${RESET}"
 
-# exec scripts/gitlab_set.sh
 
 #sudo helm status gitlab -n gitlab
 
-# sudo kubectl exec -it -n gitlab gitlab-toolbox-6594f5cdc5-qbd9q -- bash
 
 

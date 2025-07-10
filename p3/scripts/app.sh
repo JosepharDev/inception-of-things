@@ -3,10 +3,12 @@
 GREEN='\033[0;32m'
 RESET='\033[0m'
 
-# Apply ArgoCD app configuration
-sudo kubectl apply -f ../argo_app.yaml
+echo "✅ ${GREEB} Apply ArgoCD app configuration ...."
+sudo kubectl apply -f confs/argo_app.yaml
 
-# Wait until the service is ready
+echo "✅ ${GREEB} Cloning The Remote Repo ...."
+git clone git@github.com:JosepharDev/iot-test.git
+
 echo -e "${GREEN}Waiting for svc-wil service to be available...${RESET}"
 while ! sudo kubectl get svc svc-wil -n dev >/dev/null 2>&1; do
   sleep 2

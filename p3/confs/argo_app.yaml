@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wil-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/JosepharDev/iot-test
+    targetRevision: HEAD
+    path: .
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+
+
+
+# restart
+# sudo kubectl rollout restart deployment argocd-server -n argocd
+
+
+
+# sudo kubectl patch configmap argocd-cm -n argocd --type merge -p '
+# data:
+#   resource.exclusions: |
+#     - apiGroups:
+#         - ""
+#       kinds:
+#         - Endpoints
+#         - EndpointSlice
+#       clusters:
+#         - "*"
+# '
+
+
+
+#sudo kubectl edit configmap argocd-cm -n argocd 
