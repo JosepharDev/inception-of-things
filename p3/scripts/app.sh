@@ -7,7 +7,7 @@ echo "✅ ${GREEB} Apply ArgoCD app configuration ...."
 sudo kubectl apply -f confs/argo_app.yaml
 
 echo "✅ ${GREEB} Cloning The Remote Repo ...."
-git clone git@github.com:JosepharDev/iot-test.git
+git clone git@github.com:JosepharDev/yoyahya_iot.git
 
 echo -e "${GREEN}Waiting for svc-wil service to be available...${RESET}"
 while ! sudo kubectl get svc svc-wil -n dev >/dev/null 2>&1; do

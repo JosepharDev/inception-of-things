@@ -6,8 +6,8 @@ spec:
   selector:
     app: app3
   ports:
-    - port: 80           # service port
-      targetPort: 8080   # container port
+    - port: 80
+      targetPort: 8080 
   type: ClusterIP
 
 ---

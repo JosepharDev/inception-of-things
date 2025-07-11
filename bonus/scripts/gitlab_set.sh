@@ -22,16 +22,16 @@ if [ -d "git_repo" ]; then
 fi
 
 echo -e "${YELLOW}📥 Cloning GitLab repo...${RESET}"
-sudo git clone http://gitlab.k3d.gitlab.com/root/testrepo.git ../git_repo
+sudo git clone http://gitlab.k3d.gitlab.com/root/testrepo.git git_repo
 
 echo -e "${YELLOW}📥 Cloning GitHub repo for source deployment files...${RESET}"
-sudo git clone https://github.com/JosepharDev/iot-test.git iot_test
+sudo git clone https://github.com/JosepharDev/yoyahya_iot.git yoyahya_iot
 
 echo -e "${YELLOW}📂 Copying deployment.yaml to GitLab repo...${RESET}"
-sudo mv iot_test/deployment.yaml git_repo/
+sudo mv yoyahya_iot/deployment.yaml git_repo/
 
 echo -e "${YELLOW}🧹 Removing temporary GitHub repo...${RESET}"
-sudo rm -rf iot_test/
+sudo rm -rf yoyahya_iot/
 
 cd git_repo
 echo -e "${YELLOW}📦 Committing and pushing to GitLab...${RESET}"

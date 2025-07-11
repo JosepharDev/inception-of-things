@@ -19,24 +19,4 @@ spec:
 
 
 
-
-# restart
-# sudo kubectl rollout restart deployment argocd-server -n argocd
-
-
-
-# sudo kubectl patch configmap argocd-cm -n argocd --type merge -p '
-# data:
-#   resource.exclusions: |
-#     - apiGroups:
-#         - ""
-#       kinds:
-#         - Endpoints
-#         - EndpointSlice
-#       clusters:
-#         - "*"
-# '
-
-
-
 #sudo kubectl edit configmap argocd-cm -n argocd 

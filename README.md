@@ -1,7 +1,5 @@
 # inception-of-things
 
-
-
 # forward 8080:443 expose argo cd
 
 #sudo kubectl port-forward svc/argocd-server -n argocd 8080:443
@@ -110,5 +108,11 @@
 
 # --port "8080:443@loadbalancer"     # Argo CD
 
-
 #sudo helm status gitlab -n gitlab
+
+
+
+
+# # restart
+
+# sudo kubectl rollout restart deployment argocd-server -n argocd
