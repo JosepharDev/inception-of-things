@@ -11,6 +11,23 @@
 	<img src="https://img.shields.io/badge/Bonus-GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white" alt="GitLab" />
 </p>
 
+## Tech stack
+
+- Kubernetes (`k3s`, `k3d`)
+- GitOps (`Argo CD`)
+- Virtualization (`Vagrant`, `VirtualBox`)
+- Container tooling (`Docker`, `Helm`, `kubectl`)
+- CI/CD source hosting (`GitLab`, Git-based workflows)
+- Infrastructure scripting (`Bash`, YAML manifests)
+
+## Key achievements
+
+- Built a **multi-node Kubernetes cluster** on VMs using K3s server/worker bootstrap.
+- Deployed multiple apps with **service discovery + ingress routing** by hostname.
+- Implemented **GitOps continuous delivery** using Argo CD with automated sync, prune, and self-heal.
+- Integrated a **self-hosted GitLab source of truth** for private in-cluster application delivery.
+- Automated setup and teardown flows for all parts with reproducible scripts and Makefile commands.
+
 ---
 
 ## 1) What is this project?
@@ -163,7 +180,7 @@ Destroy:
 make clean
 ```
 
-## What to explain in evaluation
+## Professional highlights from this part
 
 - Why token-based joining is required
 - Difference between control-plane node and worker node
@@ -224,7 +241,7 @@ Destroy:
 make clean
 ```
 
-## What to explain in evaluation
+## Professional highlights from this part
 
 - Service vs Deployment vs Ingress
 - Why ingress controller is needed
@@ -297,7 +314,7 @@ Cleanup:
 make clean
 ```
 
-## What to explain in evaluation
+## Professional highlights from this part
 
 - Why GitOps is different from manual `kubectl apply`
 - Meaning of `selfHeal` and `prune`
@@ -359,7 +376,7 @@ Cleanup:
 make clean
 ```
 
-## What to explain in evaluation
+## Professional highlights from this part
 
 - Why internal service DNS (`*.svc`) is used
 - Difference between public Git source and in-cluster private GitLab
@@ -414,9 +431,9 @@ kubectl get pods -n gitlab
 
 ---
 
-## 12) Security and quality notes for your current repo
+## 12) Security and quality notes for production mindset
 
-These are practical improvements for stronger evaluation quality:
+These are practical improvements to make this project more production-ready:
 
 - In `p1/scripts/worker_script.sh`, fix shebang to:
 
@@ -436,12 +453,12 @@ set -euo pipefail
 
 ---
 
-## 13) Evaluation cheat sheet (what to say clearly)
+## 13) Interview talking points (what this project proves)
 
-1. **P1:** "I build a real K3s cluster with server/agent join token on two VMs."
-2. **P2:** "I deploy 3 apps and route them by hostname through NGINX ingress."
-3. **P3:** "I moved from imperative deploy to GitOps with Argo auto-sync."
-4. **Bonus:** "I replaced public Git with self-hosted GitLab and kept Argo flow."
+1. **P1:** "I built a real K3s cluster with server/agent join token across two VMs."
+2. **P2:** "I deployed multiple services and implemented hostname-based ingress routing."
+3. **P3:** "I implemented GitOps with Argo CD, including automated sync, prune, and self-heal."
+4. **Bonus:** "I integrated self-hosted GitLab with Argo CD for private in-cluster delivery."
 
 ---
 
