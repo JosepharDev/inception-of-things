@@ -1,0 +1,48 @@
+<svg width="1400" height="780" viewBox="0 0 1400 780" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IOT architecture summary">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="780" rx="20" fill="#0f172a"/>
+  <text x="40" y="52" fill="#e2e8f0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="32" font-weight="700">Architecture snapshots by part</text>
+
+  <rect x="40" y="90" width="1320" height="200" rx="16" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="60" y="122" fill="#93c5fd" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="700">P1 • K3s on Vagrant VMs</text>
+  <rect x="70" y="145" width="300" height="110" rx="12" fill="#1e3a8a"/>
+  <text x="92" y="184" fill="#e2e8f0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700">Server VM</text>
+  <text x="92" y="210" fill="#cbd5e1" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15">k3s server + token export</text>
+  <rect x="500" y="145" width="300" height="110" rx="12" fill="#6d28d9"/>
+  <text x="522" y="184" fill="#e2e8f0" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" font-weight="700">Worker VM</text>
+  <text x="522" y="210" fill="#cbd5e1" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15">joins via K3S_URL + token</text>
+  <line x1="370" y1="200" x2="500" y2="200" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="315" width="1320" height="205" rx="16" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="60" y="347" fill="#c4b5fd" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="700">P2 • Ingress routing to 3 apps</text>
+  <rect x="70" y="375" width="220" height="120" rx="12" fill="#0f766e"/>
+  <text x="95" y="415" fill="#e2e8f0" font-size="20" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">Ingress</text>
+  <text x="95" y="440" fill="#cbd5e1" font-size="14" font-family="Inter,Segoe UI,Arial,sans-serif">app1.com / app2.com</text>
+  <rect x="390" y="375" width="240" height="120" rx="12" fill="#1e3a8a"/>
+  <text x="412" y="415" fill="#e2e8f0" font-size="18" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">app1-service</text>
+  <rect x="690" y="375" width="240" height="120" rx="12" fill="#6d28d9"/>
+  <text x="712" y="415" fill="#e2e8f0" font-size="18" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">app2-service</text>
+  <rect x="990" y="375" width="240" height="120" rx="12" fill="#7c2d12"/>
+  <text x="1012" y="415" fill="#e2e8f0" font-size="18" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">app3-service</text>
+  <line x1="290" y1="435" x2="390" y2="435" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="290" y1="450" x2="690" y2="450" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="290" y1="465" x2="990" y2="465" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="545" width="1320" height="190" rx="16" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="60" y="577" fill="#2dd4bf" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="24" font-weight="700">P3/Bonus • GitOps flow with Argo CD (and GitLab in bonus)</text>
+  <rect x="80" y="605" width="270" height="95" rx="12" fill="#334155"/>
+  <text x="102" y="642" fill="#e2e8f0" font-size="19" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">Git repo</text>
+  <text x="102" y="666" fill="#cbd5e1" font-size="14" font-family="Inter,Segoe UI,Arial,sans-serif">GitHub (P3) / GitLab (Bonus)</text>
+  <rect x="500" y="605" width="270" height="95" rx="12" fill="#0f766e"/>
+  <text x="522" y="642" fill="#e2e8f0" font-size="19" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">Argo CD</text>
+  <text x="522" y="666" fill="#cbd5e1" font-size="14" font-family="Inter,Segoe UI,Arial,sans-serif">auto sync + selfHeal + prune</text>
+  <rect x="920" y="605" width="360" height="95" rx="12" fill="#1e3a8a"/>
+  <text x="942" y="642" fill="#e2e8f0" font-size="19" font-family="Inter,Segoe UI,Arial,sans-serif" font-weight="700">dev namespace</text>
+  <text x="942" y="666" fill="#cbd5e1" font-size="14" font-family="Inter,Segoe UI,Arial,sans-serif">deployment reconciled automatically</text>
+  <line x1="350" y1="650" x2="500" y2="650" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+  <line x1="770" y1="650" x2="920" y2="650" stroke="#22d3ee" stroke-width="3" marker-end="url(#arrow)"/>
+</svg>
